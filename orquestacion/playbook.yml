@@ -1,0 +1,32 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Actualizaciones
+      apt: update_cache=yes
+
+    - name: Instalar git
+      apt: name=git state=present
+
+    - name: Instalar Python python3
+      apt: name=python3 state=present
+
+    - name: Instalar pip3
+      apt: name=python3-pip state=present
+      
+    - name: Toca clonar el proyecto
+      git:
+        repo: https://github.com/xenahort/proyectoCloudComputing
+        dest: "~/proyectoCloudComputing"
+
+    - name: Instalar fichero requirements
+      shell: "pip3 install -r ~/proyectoCloudComputing/requirements.txt"
+
+    - name: Descarga de corpus punkt
+      shell: "python3 -m nltk.downloader punkt"
+
+    - name: Descarga de corpus stopwords
+      shell: "python3 -m nltk.downloader stopwords"
+
+    - name: Descarga de corpus maxent_treebank_pos_tagger
+      shell: "python3 -m nltk.downloader maxent_treebank_pos_tagger"

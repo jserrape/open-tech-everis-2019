@@ -1,0 +1,6 @@
+---
+- hosts: xenahort
+  user: xenahort
+  become: yes
+  roles:
+  - common

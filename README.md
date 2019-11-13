@@ -1,1 +1,0 @@
-# open-tech-everis-2019
